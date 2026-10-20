@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emily Dickinson</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IM+Fell+English&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f6efdf;
+            color: #30291f;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            line-height: 1.65;
+        }
+
+        a {
+            color: #713c46;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #687963;
+            text-decoration: underline;
+        }
+
+        /* Header */
+
+        header {
+            background-color: #eee3ce;
+            border-bottom: 1px solid #d5c5a5;
+            padding: 10px 6%;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brand {
+            font-family: 'IM Fell English', serif;
+            font-size: 22px;
+            color: #713c46;
+            white-space: nowrap;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Main heading */
+
+        .hero {
+            min-height: 265px;
+            padding: 45px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background-color: #f1e6d0;
+            border-bottom: 1px solid #d5c5a5;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .eyebrow {
+            color: #713c46;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'IM Fell English', serif;
+            font-size: clamp(42px, 6vw, 68px);
+            font-weight: 400;
+            line-height: 1.2;
+            color: #3d3027;
+        }
+
+        .ornament {
+            color: #a58a59;
+            font-size: 23px;
+            margin-top: 10px;
+        }
+
+        /* Stationary carriage */
+
+        .carriage {
+            position: absolute;
+            left: 22px;
+            bottom: 12px;
+            width: 95px;
+            height: 30px;
+        }
+
+        .carriage svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Main content */
+
+        .page-layout {
+            max-width: 1000px;
+            margin: auto;
+            padding: 35px 25px;
+        }
+
+        .portrait-section {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .portrait-frame {
+            display: inline-block;
+            width: 230px;
+            padding: 9px;
+            background-color: #e8dcc2;
+            border: 1px solid #a58a59;
+            box-shadow: 4px 5px 0 rgba(113, 91, 61, 0.10);
+        }
+
+        .portrait-frame img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .portrait-caption {
+            font-size: 15px;
+            font-style: italic;
+            padding-top: 7px;
+            color: #665344;
+        }
+
+        /* Quotation */
+
+        .quote-panel {
+            text-align: center;
+            margin: 30px 0 40px;
+            padding: 25px 15px;
+            background-color: #eee3ce;
+            border-top: 1px solid #a58a59;
+            border-bottom: 1px solid #a58a59;
+        }
+
+        .quote-panel blockquote {
+            font-family: 'IM Fell English', serif;
+            font-size: clamp(23px, 3vw, 30px);
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .quote-credit {
+            color: #713c46;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* Biography sections */
+
+        .story-section {
+            margin-bottom: 30px;
+        }
+
+        .section-heading {
+            font-family: 'IM Fell English', serif;
+            font-size: 29px;
+            font-weight: 400;
+            color: #47352c;
+            margin-bottom: 10px;
+        }
+
+        .story-section p {
+            font-size: 19px;
+            line-height: 1.75;
+        }
+
+        /* Famous poems */
+
+        .poetry-section {
+            margin-top: 45px;
+        }
+
+        .poetry-intro {
+            font-size: 19px;
+            margin-bottom: 22px;
+        }
+
+        .poem-grid {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .poem-card {
+            padding: 20px;
+            background-color: #fbf7ed;
+            border: 1px solid #d8c9ad;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .poem-number {
+            color: #687963;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .poem-card h3 {
+            font-family: 'IM Fell English', serif;
+            font-size: 23px;
+            font-weight: 400;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .poem-card p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .poem-link {
+            margin-top: auto;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Further information */
+
+        .further-reading {
+            margin-top: 35px;
+            padding: 20px 0;
+        }
+
+        .further-reading p {
+            font-size: 19px;
+        }
+
+        /* Footer */
+
+        footer {
+            background-color: #713c46;
+            color: #f6efdf;
+            text-align: center;
+            padding: 18px 15px;
+            font-size: 16px;
+        }
+
+        footer a {
+            color: #f6efdf;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: #ead4a8;
+        }
+
+        /* Smaller screens */
+
+        @media (max-width: 700px) {
+            .nav-inner {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 5px 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: 240px;
+                padding: 40px 15px 75px;
+            }
+
+            .carriage {
+                width: 100px;
+                height: 45px;
+                left: 10px;
+                bottom: 8px;
+            }
+
+            .page-layout {
+                padding: 25px 18px;
+            }
+
+            .section-heading {
+                font-size: 26px;
+            }
+
+            .poem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .poem-card {
+                padding: 22px;
+            }
+
+            .portrait-frame {
+                width: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <header>
+        <div class="nav-inner">
+            <a class="brand" href="#top">Emily Dickinson</a>
+
+            <nav aria-label="Main navigation">
+                <a href="#early-life">Her Life</a>
+                <a href="#people">Family</a>
+                <a href="#poetic-world">Her Poetry</a>
+                <a href="#famous-works">Famous Works</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">American Poet · 1830–1886</p>
+                <h1>Emily Dickinson</h1>
+                <div class="ornament">❦</div>
+            </div>
+
+            <div class="carriage" aria-hidden="true">
+                <svg viewBox="0 0 180 85"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <g fill="#4d3a2e" stroke="#4d3a2e"
+                       stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 35 Q5 27 12 18 L20 23
+                                 Q30 18 38 26 L45 39 L39 44
+                                 L30 38 L20 45 L12 42 Z"/>
+                        <path d="M11 20 L7 12 L15 17 Z"/>
+                        <path d="M17 43 L16 60 L12 62 L15 45
+                                 M27 43 L29 60 L25 62 L24 43"
+                              fill="none" stroke-width="4"/>
+                        <path d="M8 27 Q-1 25 2 17"
+                              fill="none" stroke-width="3"/>
+                        <circle cx="18" cy="27" r="1.5"
+                                fill="#f6efdf" stroke="none"/>
+                    </g>
+
+                    <path d="M25 32 L53 45 L80 46"
+                          stroke="#a58a59" stroke-width="2" fill="none"/>
+
+                    <path d="M73 30 L127 30 L140 51 L65 51 Z"
+                          fill="#713c46" stroke="#4d302b" stroke-width="2"/>
+
+                    <path d="M80 30 L85 13 L116 13 L125 30"
+                          fill="#e8dbc0" stroke="#4d302b" stroke-width="2"/>
+
+                    <path d="M90 16 L90 27 L111 27 L111 16 Z"
+                          fill="#bca77d" stroke="#713c46" stroke-width="2"/>
+
+                    <path d="M100 14 L100 29"
+                          stroke="#713c46" stroke-width="2"/>
+
+                    <path d="M70 36 L130 36"
+                          stroke="#c5a66c" stroke-width="2"/>
+
+                    <circle cx="132" cy="20" r="6" fill="#4d3a2e"/>
+                    <path d="M126 27 L138 27 L142 40 L127 40 Z"
+                          fill="#30291f"/>
+                    <path d="M125 18 Q132 8 139 18 Z"
+                          fill="#30291f"/>
+
+                    <g>
+                        <circle cx="81" cy="55" r="14"
+                                fill="#e8dbc0" stroke="#4d302b" stroke-width="3"/>
+                        <circle cx="81" cy="55" r="3" fill="#713c46"/>
+                        <path d="M81 42 V68 M68 55 H94
+                                 M72 46 L90 64 M72 64 L90 46"
+                              stroke="#713c46" stroke-width="1.5"/>
+                    </g>
+
+                    <g>
+                        <circle cx="124" cy="55" r="14"
+                                fill="#e8dbc0" stroke="#4d302b" stroke-width="3"/>
+                        <circle cx="124" cy="55" r="3" fill="#713c46"/>
+                        <path d="M124 42 V68 M111 55 H137
+                                 M115 46 L133 64 M115 64 L133 46"
+                              stroke="#713c46" stroke-width="1.5"/>
+                    </g>
+
+                    <path d="M2 71 Q55 68 105 72 T175 71"
+                          fill="none" stroke="#a58a59" stroke-width="1.5"/>
+                </svg>
+            </div>
+        </section>
+
+        <div class="page-layout">
+
+            <section class="portrait-section"
+                     aria-label="Portrait of Emily Dickinson">
+
+                <figure class="portrait-frame">
+                    <img
+                        src="https://www.emilydickinsonmuseum.org/wp-content/uploads/Theme-Images/daguerreotype-cropped-corrected-1.jpg"
+                        alt="Historical portrait of Emily Dickinson"
+                    >
+                    <figcaption class="portrait-caption">
+                        Emily Dickinson, 1830–1886
+                    </figcaption>
+                </figure>
+
+            </section>
+
+            <aside class="quote-panel">
+                <blockquote>
+                    Hope is the thing with feathers<br>
+                    That perches in the soul.
+                </blockquote>
+                <p class="quote-credit">
+                    Emily Dickinson · Poem 254
+                </p>
+            </aside>
+
+            <section class="story-section" id="early-life">
+                <h2 class="section-heading">1. Growing Up in Amherst</h2>
+
+                <p>
+                    Born in Amherst, Massachusetts, in 1830, Emily Dickinson
+                    spent most of her life in the town where she grew up.
+                    She studied at Amherst Academy and later attended Mount
+                    Holyoke Female Seminary. She enjoyed reading and spending time in nature.
+                   
+                </p>
+            </section>
+
+            <section class="story-section" id="people">
+                <h2 class="section-heading">2. The People Who Shaped Her Life</h2>
+
+                <p>
+                    Emily grew up with her brother Austin and her younger
+                    sister Lavinia who later discovered many of Emily's unpublished poems after her death.
+                    Her sister's decision to preserve these writings helped introduce Emily's
+                    work to readers. Emily also had a close relationship
+                    with Susan Gilbert, who became Austin's wife.
+                    Although Emily lived a quiet and private life, her
+                    letters show that she had strong feelings and meaningful
+                    connections with the people around her.
+                    
+                </p>
+            </section>
+
+            <section class="story-section">
+                <h2 class="section-heading">
+                    3. Why Death Appeared So Often in Her Poems
+                </h2>
+
+                <p>
+                    Death was one of the subjects Emily Dickinson returned
+                    to throughout her writing. During her lifetime, she
+                    experienced loss and lived in a society where religion
+                    and ideas about the afterlife were important parts of
+                    everyday life. Instead of writing about death in only
+                    a frightening way, she explored it from different
+                    points of view. In
+                    <em>Because I could not stop for Death</em>, death is
+                    presented as a carriage companion taking the speaker
+                    on a journey. Her poems often leave readers wondering
+                    about what happens after life and whether it is possible
+                    to find answers to such questions.
+                </p>
+            </section>
+
+            <section class="story-section" id="poetic-world">
+                <h2 class="section-heading">
+                    4. The Way She Saw the World Through Words
+                </h2>
+
+                <p>
+                    Emily Dickinson had a writing style that was different
+                    from much of the poetry written during her time. She
+                    often used short lines, unusual punctuation, capital
+                    letters and rhymes that did not always sound exact.
+                    Her use of dashes gave her poems a distinctive rhythm
+                    and allowed ideas to remain open to interpretation.
+                    She could take something simple, like a bird singing
+                    or a walk through the countryside, and turn it into
+                    a reflection on hope, freedom or human life. 
+                </p>
+            </section>
+
+            <section class="poetry-section" id="famous-works">
+                <h2 class="section-heading">Some of Her Famous Works</h2>
+
+                <ol class="poem-grid">
+
+                    <li class="poem-card">
+                        <p class="poem-number">Poem No. 01</p>
+
+                        <h3>Hope is the Thing with Feathers</h3>
+
+                        <p>
+                            In this poem, Dickinson compares hope to a
+                            small bird that continues singing even during
+                            difficult times. 
+                        </p>
+
+                        <a
+                            class="poem-link"
+                            href="https://www.poetryfoundation.org/poems/42889/hope-is-the-thing-with-feathers-314"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Read the poem ↗
+                        </a>
+                    </li>
+
+                    <li class="poem-card">
+                        <p class="poem-number">Poem No. 02</p>
+
+                        <h3>Because I Could Not Stop for Death</h3>
+
+                        <p>
+                            Dickinson describes the inevitability of death and uses it as a metaphor who is her companion in a carriage.
+                            The journey becomes a way to explore
+                            mortality, time and the possibility of eternity.
+                        </p>
+
+                        <a
+                            class="poem-link"
+                            href="https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Read the poem ↗
+                        </a>
+                    </li>
+
+                    <li class="poem-card">
+                        <p class="poem-number">Poem No. 03</p>
+
+                        <h3>I'm Nobody! Who Are You?</h3>
+
+                        <p>
+                            With a playful tone, Dickinson questions the
+                            desire to be famous. She suggests that there
+                            can be freedom and pleasure in living without
+                            always seeking attention.
+                        </p>
+
+                        <a
+                            class="poem-link"
+                            href="https://www.poetryfoundation.org/poems/1647321/im-nobody-who-are-you"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Read the poem ↗
+                        </a>
+                    </li>
+
+                </ol>
+            </section>
+
+            <section class="further-reading">
+                <p>
+                    To know more about Emily Dickinson and her works, visit:
+                    <a
+                        href="https://poets.org/poet/emily-dickinson"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Academy of American Poets
+                    </a>.
+                </p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>By Anum Gul</p>
+        <p>
+            Email:
+            <a href="mailto:anumgul548@gmail.com">
+                anumgul548@gmail.com
+            </a>
+        </p>
+    </footer>
+
+</body>
+</html>
